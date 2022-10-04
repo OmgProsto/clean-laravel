@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Layer\Api\Persistanse\Action\Player;
+namespace App\Layer\Api\Persistence\Action\Player;
 
 use App\Layer\Api\Domain\Player\BanPlayerByIdInterface;
 

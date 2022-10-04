@@ -2,7 +2,8 @@
 
 namespace App\Presentation\Http\Controller\Player;
 
-use App\Layer\Api\Domain\Player\Entity\PlayerEntity;
+use App\Layer\Api\Domain\Player\Entity\PlayerRequestDto;
+use App\Layer\Api\Domain\Player\Entity\PlayerDomainEntity;
 use App\Layer\Api\UseCase\Player\AddPlayerUseCase;
 use App\Presentation\Http\Controller\Controller;
 use App\Presentation\Http\Request\Player\AddNewPlayerRequest;
@@ -23,7 +24,9 @@ class AddNewPlayerController extends Controller
     {
         $request->validated();
 
-        $dto = new PlayerEntity();
+        $dto = new PlayerRequestDto(
+            $request->name
+        );
 
         return $this->sendSuccessResponse(
             $this->playerView->toArrayFromDomain(
