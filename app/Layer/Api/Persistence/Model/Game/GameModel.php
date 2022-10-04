@@ -8,6 +8,13 @@ use App\Layer\Api\Persistence\Entity\Game\GamePersistenceEntity;
 
 class GameModel
 {
+    private GetGamePlayersInterface $getGamePlayers;
+
+    public function __construct(GetGamePlayersInterface $getGamePlayers)
+    {
+        $this->getGamePlayers = $getGamePlayers;
+    }
+
     public function fromDomain(GameDomainEntity $gameDomainEntity): GamePersistenceEntity
     {
         return new GamePersistenceEntity(
@@ -21,10 +28,12 @@ class GameModel
         );
     }
 
-    public function toDomain(GameDomainEntity $gameDomainEntity): GamePersistenceEntity
+    public function toDomain(GamePersistenceEntity $gamePersistenceEntity): GameDomainEntity
     {
-        return new GamePersistenceEntity(
-            $gameDomainEntity->getId(),
+        $players = $this->getGamePlayers->get($gamePersistenceEntity->getId());
+
+        return new GameDomainEntity(
+            $gamePersistenceEntity->getId(),
             array_map(
                 fn (PlayerEntity $playerEntity) => $playerEntity->getId(),
                 $gameDomainEntity->getFirstTeam()->getPlayers()),
