@@ -22,7 +22,7 @@ class AddNewPlayerController extends Controller
 
     public function save(AddNewPlayerRequest $request)
     {
-        $request->validated();
+        $request->validate();
 
         $dto = new PlayerRequestDto(
             $request->name

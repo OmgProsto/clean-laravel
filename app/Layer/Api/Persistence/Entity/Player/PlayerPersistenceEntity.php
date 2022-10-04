@@ -7,12 +7,14 @@ class PlayerPersistenceEntity
     private ?int $id;
     private string $name;
     private int $rating;
+    private bool $isBanned;
 
-    public function __construct(?int $id, string $name, int $rating)
+    public function __construct(?int $id, string $name, int $rating, bool $isBanned)
     {
         $this->id = $id;
         $this->name = $name;
         $this->rating = $rating;
+        $this->isBanned = $isBanned;
     }
 
     public function getId(): ?int
@@ -28,5 +30,10 @@ class PlayerPersistenceEntity
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function isBanned(): bool
+    {
+        return $this->isBanned;
     }
 }

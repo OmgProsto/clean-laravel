@@ -14,7 +14,7 @@ class SaveNewPlayerAction implements SaveNewPlayerInterface
 
     public function __construct(
         PlayerRepository $playerRepository,
-        PlayerModel                       $playerModel
+        PlayerModel $playerModel
     ) {
         $this->playerRepository = $playerRepository;
         $this->playerModel = $playerModel;

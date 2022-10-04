@@ -13,7 +13,8 @@ class PlayerModel
         return new PlayerPersistenceEntity(
             $playerEntity->getId(),
             $playerEntity->getName(),
-            $playerEntity->getRating()
+            $playerEntity->getRating(),
+            $playerEntity->isBanned()
         );
     }
 
@@ -22,7 +23,8 @@ class PlayerModel
         return new PlayerDomainEntity(
             $playerEntity->getId(),
             $playerEntity->getName(),
-            $playerEntity->getRating()
+            $playerEntity->getRating(),
+            $playerEntity->isBanned()
         );
     }
 }
