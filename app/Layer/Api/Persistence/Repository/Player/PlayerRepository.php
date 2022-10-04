@@ -13,6 +13,20 @@ class PlayerRepository
         return $this->makePersistenceEntity($playerLaravelModel);
     }
 
+    /**
+     * @return PlayerPersistenceEntity[]
+     */
+    public function getOrderByRating(): array
+    {
+        $playerLaravelModels = Player::orderBy('rating');
+
+        return array_map(
+            fn (Player $playerLaravelModel): PlayerPersistenceEntity =>
+                $this->makePersistenceEntity($playerLaravelModel),
+            $playerLaravelModels
+        );
+    }
+
     public function ban(int $playerId): void
     {
         $playerLaravelModel = Player::find($playerId);
